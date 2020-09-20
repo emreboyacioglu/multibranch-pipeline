@@ -62,6 +62,10 @@ pipeline {
 		sh """
                 cd usr
 		git pull
+<<<<<<< Updated upstream
+=======
+		git status
+>>>>>>> Stashed changes
                 """
 
                 sh """
