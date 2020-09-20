@@ -28,7 +28,7 @@ pipeline {
             steps {
                 checkout([
                     $class: 'GitSCM', 
-                    branches: [[name: '*/develop']], 
+                    branches: [[name: '*/master']], 
                     userRemoteConfigs: [[url: 'https://github.com/emreboyacioglu/multibranch-pipeline.git']]
                 ])
             }
@@ -60,12 +60,9 @@ pipeline {
                 """
 
 		sh """
-                cd usr
+                cd /usr/src/multibranch-pipeline
 		git pull
-<<<<<<< Updated upstream
-=======
 		git status
->>>>>>> Stashed changes
                 """
 
                 sh """
