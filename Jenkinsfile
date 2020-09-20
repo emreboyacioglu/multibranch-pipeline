@@ -61,7 +61,6 @@ pipeline {
 
 		sh """
                 cd /usr/src/multibranch-pipeline
-		git update
 		git status
                 """
 
