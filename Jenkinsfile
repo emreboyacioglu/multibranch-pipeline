@@ -61,7 +61,7 @@ pipeline {
 
 		sh """
                 cd /usr/src/multibranch-pipeline
-		git pull https://github.com/emreboyacioglu/multibranch-pipeline.git
+		dotnet --version
                 """
 
                 sh """
