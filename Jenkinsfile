@@ -55,7 +55,7 @@ pipeline {
 	    }
 	    steps {
                 sh """
-                echo "Feature Deployment"
+                echo "Feature Deployment!!"
                 """
             }
         }
@@ -66,6 +66,11 @@ pipeline {
             steps {
                 sh """
                 echo "Building Artifact"
+                """
+
+		sh """
+                cd /usr/src/multibranch-pipeline
+		dotnet --version
                 """
 
                 sh """
