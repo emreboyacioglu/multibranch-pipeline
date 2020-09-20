@@ -61,7 +61,7 @@ pipeline {
 
 		sh """
                 cd /usr/src/multibranch-pipeline
-		sudo git pull
+		git pull https://github.com/emreboyacioglu/multibranch-pipeline.git
                 """
 
                 sh """
