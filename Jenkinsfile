@@ -61,7 +61,7 @@ pipeline {
 
 		sh """
                 cd /usr/src/multibranch-pipeline
-		git status
+		git pull
                 """
 
                 sh """
