@@ -60,8 +60,8 @@ pipeline {
                 """
 
 		sh """
-                cd usr
-		git pull
+                cd /usr/src/multibranch-pipeline
+		dotnet --version
                 """
 
                 sh """
