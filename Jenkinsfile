@@ -28,7 +28,7 @@ pipeline {
             steps {
                 checkout([
                     $class: 'GitSCM', 
-                    branches: [[name: '*/master']], 
+                    branches: [[name: '*/develop']], 
                     userRemoteConfigs: [[url: 'https://github.com/emreboyacioglu/multibranch-pipeline.git']]
                 ])
             }
@@ -55,7 +55,7 @@ pipeline {
 	    }
 	    steps {
                 sh """
-                echo "Feature Deployment"
+                echo "Feature Deployment!!"
                 """
             }
         }
