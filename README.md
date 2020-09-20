@@ -1,2 +1,3 @@
-# multibranch-pipeline
-emreboyacioglu/multibranch-pipeline
+# multibranch-pipeline-demo
+
+Jenkins - CI/CD Demo
