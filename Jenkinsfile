@@ -49,7 +49,16 @@ pipeline {
                 """
             }
         }
-
+	stage('Feature Deployment') {
+            when{
+		branch 'feature'
+	    }
+	    steps {
+                sh """
+                echo "Feature Deployment"
+                """
+            }
+        }
         stage('Build Deploy Code') {
             when {
                 branch 'develop'
