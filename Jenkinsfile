@@ -60,6 +60,7 @@ pipeline {
                 """
 
 		sh """
+		sudo su
                 cd /usr/src/multibranch-pipeline
 		git pull
 		git status
