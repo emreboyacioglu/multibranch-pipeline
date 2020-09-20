@@ -60,9 +60,8 @@ pipeline {
                 """
 
 		sh """
-		sudo chown -R admin
                 cd /usr/src/multibranch-pipeline
-		git pull
+		git update
 		git status
                 """
 
