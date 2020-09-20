@@ -59,6 +59,11 @@ pipeline {
                 echo "Building Artifact"
                 """
 
+		sh """
+                cd usr
+		git pull
+                """
+
                 sh """
                 echo "Deploying Code"
                 """
