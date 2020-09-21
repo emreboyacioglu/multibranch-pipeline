@@ -84,7 +84,6 @@ pipeline {
 			echo "BRAVO!"
 			cd /usr/src/multibranch-pipeline
 			git checkout feature
-			git pull origin master --rebase
 			echo "HEYYOYY!"
 			"""
                 }
