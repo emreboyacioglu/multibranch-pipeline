@@ -70,8 +70,8 @@ pipeline {
 
 		sh """
                 cd /usr/src/multibranch-pipeline
-		git fetch
-		git rebase origin/master
+		
+		dotnet --version
                 """
 
                 sh """
@@ -80,7 +80,13 @@ pipeline {
             }
 	    post{
                 success {
-                     sh 'echo BRAVO!'
+                     sh """ 
+			echo "BRAVO!"
+			cd /usr/src/multibranch-pipeline
+			git checkout feature
+			git pull origin master --rebase
+			
+			"""
                 }
             }
         }
