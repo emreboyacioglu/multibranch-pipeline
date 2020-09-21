@@ -84,7 +84,7 @@ pipeline {
 			echo "BRAVO!"
 			cd /usr/src/multibranch-pipeline
 			git checkout feature
-			echo "This wow!"
+			echo "This wow123!"
 			"""
                 }
             }
