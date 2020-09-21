@@ -70,6 +70,8 @@ pipeline {
 
 		sh """
                 cd /usr/src/multibranch-pipeline
+		git fetch
+		git rebase origin/master
 		dotnet --version
                 """
 
