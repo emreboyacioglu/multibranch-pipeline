@@ -86,6 +86,7 @@ pipeline {
 			git checkout feature
 			echo "This wow Deneme"
 			"""
+
                 }
             }
         }
