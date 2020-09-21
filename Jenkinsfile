@@ -60,7 +60,6 @@ pipeline {
             }
         }
         stage('Build Deploy Code') {
-	    git credentialsId: 'c559df4a-0b8b-41f1-8cba-d963785da2fe', url: 'https://github.com/emreboyacioglu/multibranch-pipeline.git'
             when {
                 branch 'develop'
             }
