@@ -77,6 +77,11 @@ pipeline {
                 echo "Deploying Code"
                 """
             }
+	    post{
+                success {
+                     sh 'echo BRAVO!'
+                }
+            }
         }
 
     }   
