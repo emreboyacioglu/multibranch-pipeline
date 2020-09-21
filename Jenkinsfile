@@ -28,7 +28,7 @@ pipeline {
             steps {
                 checkout([
                     $class: 'GitSCM', 
-                    branches: [[name: '*/master']], 
+                    branches: [[name: '*/develop']], 
                     userRemoteConfigs: [[url: 'https://github.com/emreboyacioglu/multibranch-pipeline.git']]
                 ])
             }
@@ -84,7 +84,7 @@ pipeline {
 			echo "BRAVO!"
 			cd /usr/src/multibranch-pipeline
 			git checkout feature
-			echo "This wow!"
+			echo "This wow123!!!"
 			"""
                 }
             }
