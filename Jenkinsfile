@@ -84,7 +84,11 @@ pipeline {
 			echo "BRAVO!"
 			cd /usr/src/multibranch-pipeline
 			git checkout feature
+<<<<<<< Updated upstream
 			echo "This wow Deneme"
+=======
+			echo "Develop değiştirildi"
+>>>>>>> Stashed changes
 			"""
 
                 }
