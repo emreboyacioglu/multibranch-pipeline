@@ -84,9 +84,8 @@ pipeline {
 			echo "BRAVO!"
 			cd /usr/src/multibranch-pipeline
 			git checkout feature
-			echo "This wow Deneme"
+			echo "Feature değiştirildi"
 			"""
-
                 }
             }
         }
