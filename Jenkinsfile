@@ -49,7 +49,6 @@ pipeline {
 
                 cd /usr/src/multibranch-pipeline-feature
 		
-		dotnet clean
 		dotnet restore
 		dotnet publish
 		dotnet --version
@@ -76,7 +75,6 @@ pipeline {
 
                 cd /usr/src/multibranch-pipeline
 		
-		dotnet clean
 		dotnet restore
 		dotnet publish
 		dotnet --version
@@ -103,7 +101,6 @@ pipeline {
 
                 cd /usr/src/multibranch-pipeline-develop
 		
-		dotnet clean
 		dotnet restore
 		dotnet publish
 		dotnet --version
