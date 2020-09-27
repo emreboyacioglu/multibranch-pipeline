@@ -49,9 +49,9 @@ pipeline {
 
                 cd /usr/src/multibranch-pipeline-feature
 		
-		botnet clean
+		dotnet clean
 		dotnet restore
-		botnet publish
+		dotnet publish
 		dotnet --version
 
                 """
@@ -76,9 +76,9 @@ pipeline {
 
                 cd /usr/src/multibranch-pipeline
 		
-		botnet clean
+		dotnet clean
 		dotnet restore
-		botnet publish
+		dotnet publish
 		dotnet --version
 
                 """
@@ -103,9 +103,9 @@ pipeline {
 
                 cd /usr/src/multibranch-pipeline-develop
 		
-		botnet clean
+		dotnet clean
 		dotnet restore
-		botnet publish
+		dotnet publish
 		dotnet --version
                 """
             }
