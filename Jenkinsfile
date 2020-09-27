@@ -81,7 +81,7 @@ pipeline {
 	    post{
                 success {
                      sh """ 
-			echo "BRAVO!"
+			echo "BRAVO!!!"
 			cd /usr/src/multibranch-pipeline
 			git checkout feature
 			echo "Develop değiştirildi"
