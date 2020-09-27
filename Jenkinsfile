@@ -24,16 +24,6 @@ pipeline {
             }
         }
 
-        stage('Code Checkout') {
-            steps {
-                checkout([
-                    $class: 'GitSCM', 
-                    branches: [[name: '*/master']], 
-                    userRemoteConfigs: [[url: 'https://github.com/emreboyacioglu/multibranch-pipeline.git']]
-                ])
-            }
-        }
-
         stage(' Unit Testing') {
             steps {
                 sh """
@@ -49,42 +39,81 @@ pipeline {
                 """
             }
         }
-	stage('Feature Deployment') {
+	stage('Feature Build&Deploy') {
             when{
 		branch 'feature'
 	    }
 	    steps {
                 sh """
-                echo "Feature Deployment!! Hey!"
+                echo "Building Artifact"
+
+                cd /usr/src/multibranch-pipeline-feature
+		
+		dotnet restore
+		dotnet build -c Release
+		botnet publish -c Release
+		dotnet --version
+
                 """
+
+
+            }
+	    post{
+                success {
+                     sh """ 
+			echo "Feature Build & Deploy tamamlandı."
+			"""
+                }
             }
         }
-        stage('Build Deploy Code') {
+	stage('Master Build&Deploy') {
+            when{
+		branch 'master'
+	    }
+	    steps {
+                sh """
+                echo "Building Artifact"
+
+                cd /usr/src/multibranch-pipeline
+		
+		dotnet restore
+		dotnet build -c Release
+		botnet publish -c Release
+		dotnet --version
+
+                """
+
+            }
+	    post{
+                success {
+                     sh """ 
+			echo "Master Build & Deploy tamamlandı."
+			"""
+                }
+            }
+
+        }
+        stage('Develop Build&Deploy') {
             when {
                 branch 'develop'
             }
             steps {
                 sh """
                 echo "Building Artifact"
-                """
 
-		sh """
-                cd /usr/src/multibranch-pipeline
+                cd /usr/src/multibranch-pipeline-develop
 		
+		dotnet restore
+		dotnet build -c Release
+		botnet publish -c Release
 		dotnet --version
-                """
 
-                sh """
-                echo "Deploying Code"
                 """
             }
 	    post{
                 success {
                      sh """ 
-			echo "BRAVO!!!"
-			cd /usr/src/multibranch-pipeline
-			echo "Develop değiştirildi"
-			"""
+			echo "Develop Build & Deploy tamamlandı."					"""
                 }
             }
         }
