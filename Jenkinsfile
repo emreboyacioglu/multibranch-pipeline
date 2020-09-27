@@ -24,7 +24,7 @@ pipeline {
             }
         }
 
-        stage(' Unit Testing') {
+        stage('Checkout') {
             steps {
                 sh """
                 echo "Running Unit Tests"
@@ -48,7 +48,9 @@ pipeline {
                 echo "Building Artifact"
 
                 cd /usr/src/multibranch-pipeline-feature
-		
+
+		git pull
+
 		dotnet restore
 		dotnet publish
 		dotnet --version
@@ -74,7 +76,7 @@ pipeline {
                 echo "Building Artifact"
 
                 cd /usr/src/multibranch-pipeline
-		
+		git pull
 		dotnet restore
 		dotnet publish
 		dotnet --version
@@ -100,7 +102,7 @@ pipeline {
                 echo "Building Artifact"
 
                 cd /usr/src/multibranch-pipeline-develop
-		
+		git pull		
 		dotnet restore
 		dotnet publish
 		dotnet --version
