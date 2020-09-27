@@ -49,8 +49,11 @@ pipeline {
 
                 cd /usr/src/multibranch-pipeline-feature
 
-		git pull
-
+		git reset
+		git clean -f
+		git stash
+		git stash clear
+		git pull		
 		dotnet restore
 		dotnet publish
 		dotnet --version
@@ -76,7 +79,11 @@ pipeline {
                 echo "Building Artifact"
 
                 cd /usr/src/multibranch-pipeline
-		git pull
+		git reset
+		git clean -f
+		git stash
+		git stash clear
+		git pull		
 		dotnet restore
 		dotnet publish
 		dotnet --version
@@ -102,6 +109,10 @@ pipeline {
                 echo "Building Artifact"
 
                 cd /usr/src/multibranch-pipeline-develop
+		git reset
+		git clean -f
+		git stash
+		git stash clear
 		git pull		
 		dotnet restore
 		dotnet publish
