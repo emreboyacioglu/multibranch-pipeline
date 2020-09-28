@@ -101,7 +101,6 @@ pipeline {
 		git fetch --all
 		git reset --hard origin/develop
 		git pull origin develop
-		docker images -a | grep "develop" | xargs docker rmi
 		docker build --no-cache -t devops-demo-develop .
 		
                 """
