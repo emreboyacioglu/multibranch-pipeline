@@ -97,8 +97,10 @@ pipeline {
                 sh """
                 echo "Building Artifact "
 
-                cd /usr/src/multibranch-pipeline-develop
-		git pull
+                cd /usr/src/multibranch-pipeline-develop 
+		git fetch --all
+		git reset --hard origin/develop
+		git pull origin develop
 		docker build -t devops-demo-develop .
 		
                 """
