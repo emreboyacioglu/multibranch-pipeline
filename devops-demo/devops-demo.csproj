@@ -7,4 +7,9 @@
 
 
 
+  <ItemGroup>
+    <Content Condition="'$(ExcludeConfigFilesFromBuildOutput)'!='true'" Update="appsettings.json">
+      <IncludeInPackage>true</IncludeInPackage>
+    </Content>
+  </ItemGroup>
 </Project>
