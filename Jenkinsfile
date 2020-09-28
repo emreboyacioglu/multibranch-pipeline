@@ -50,9 +50,10 @@ pipeline {
                 echo "Building Artifact!"
 
                 cd /usr/src/multibranch-pipeline-feature
+		git pull	
 		dotnet restore
 		dotnet publish -c Release
-		dotnet --version
+		dotnet --version 
 
                 """
 
@@ -74,7 +75,8 @@ pipeline {
                 sh """
                 echo "Building Artifact"
 
-                cd /usr/src/multibranch-pipeline	
+                cd /usr/src/multibranch-pipeline
+		git pull		
 		dotnet restore
 		dotnet publish -c Release
 		dotnet --version
@@ -99,10 +101,12 @@ pipeline {
                 sh """
                 echo "Building Artifact"
 
-                cd /usr/src/multibranch-pipeline-develop	
+                cd /usr/src/multibranch-pipeline-develop
+		git pull	
 		dotnet restore
 		dotnet publish -c Release
 		dotnet --version
+		
                 """
             }
 	    post{
