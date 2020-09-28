@@ -51,9 +51,9 @@ pipeline {
 
                 cd /usr/src/multibranch-pipeline-feature
 		git pull	
-		dotnet restore
-		dotnet publish -c Release
-		dotnet --version 
+		
+		docker build -t devops-demo-develop .
+		docker run -it --rm -p 5001:80 --name devops-demo-develop devops-demo
 
                 """
 
@@ -77,9 +77,7 @@ pipeline {
 
                 cd /usr/src/multibranch-pipeline
 		git pull		
-		dotnet restore
-		dotnet publish -c Release
-		dotnet --version
+		
 
                 """
 
@@ -103,10 +101,9 @@ pipeline {
 
                 cd /usr/src/multibranch-pipeline-develop
 		git pull
-		dotnet restore 
-
-		dotnet publish -c Release
-		dotnet --version
+		
+		docker build -t devops-demo-live .
+		docker run -it --rm -p 5000:80 --name devops-demo-live devops-demo
 		
                 """
             }
