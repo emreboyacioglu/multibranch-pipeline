@@ -47,7 +47,7 @@ pipeline {
 	    }
 	    steps {
                 sh """
-                echo "Building Artifact"
+                echo "Building Artifact!"
 
                 cd /usr/src/multibranch-pipeline-feature
 		dotnet restore
