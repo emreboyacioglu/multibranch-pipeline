@@ -100,8 +100,6 @@ pipeline {
                 cd /usr/src/multibranch-pipeline-develop
 		git pull
 		docker build -t devops-demo-develop .
-		docker run --rm -p 5001:80 --name devops-demo-develop devops-demo
-		
 		
                 """
             }
