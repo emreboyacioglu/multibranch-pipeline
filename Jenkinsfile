@@ -103,7 +103,8 @@ pipeline {
 
                 cd /usr/src/multibranch-pipeline-develop
 		git pull
-		dotnet restore
+		dotnet restore 
+
 		dotnet publish -c Release
 		dotnet --version
 		
