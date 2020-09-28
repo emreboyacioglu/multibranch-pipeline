@@ -41,7 +41,7 @@ pipeline {
                 """
             }
         }
-	stage('Feature Build&Deploy') {
+	stage('Feature CI') {
             when{
 		branch 'feature'
 	    }
@@ -52,8 +52,6 @@ pipeline {
                 cd /usr/src/multibranch-pipeline-feature
 		git pull	
 		
-		docker build -t devops-demo-develop .
-		docker run -it --rm -p 5001:80 --name devops-demo-develop devops-demo
 
                 """
 
@@ -67,7 +65,7 @@ pipeline {
                 }
             }
         }
-	stage('Master Build&Deploy') {
+	stage('Master CI') {
             when{
 		branch 'master'
 	    }
@@ -91,7 +89,7 @@ pipeline {
             }
 
         }
-        stage('Develop Build&Deploy') {
+        stage('Develop CI) {
             when {
                 branch 'develop'
             }
@@ -102,8 +100,6 @@ pipeline {
                 cd /usr/src/multibranch-pipeline-develop
 		git pull
 		
-		docker build -t devops-demo-live .
-		docker run -it --rm -p 5000:80 --name devops-demo-live devops-demo
 		
                 """
             }
