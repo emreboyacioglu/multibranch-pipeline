@@ -89,7 +89,7 @@ pipeline {
             }
 
         }
-        stage('Develop CI/CD) {
+        stage('Develop CI/CD') {
             when {
                 branch 'develop'
             }
