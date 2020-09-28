@@ -102,8 +102,8 @@ pipeline {
                 echo "Building Artifact"
 
                 cd /usr/src/multibranch-pipeline-develop
-		git pull	
-		dotnet restore
+		git pull
+		dotnet restore 
 		dotnet publish -c Release
 		dotnet --version
 		
