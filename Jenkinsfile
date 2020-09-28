@@ -101,7 +101,7 @@ pipeline {
 		git fetch --all
 		git reset --hard origin/develop
 		git pull origin develop
-		docker build -t devops-demo-develop .
+		docker build --no-cache -t devops-demo-develop .
 		
                 """
             }
