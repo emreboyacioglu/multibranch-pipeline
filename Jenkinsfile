@@ -89,7 +89,7 @@ pipeline {
             }
 
         }
-        stage('Develop CI) {
+        stage('Develop CI/CD) {
             when {
                 branch 'develop'
             }
@@ -99,6 +99,8 @@ pipeline {
 
                 cd /usr/src/multibranch-pipeline-develop
 		git pull
+		docker build -t devops-demo-develop .
+		docker run -it --rm -p 5001:80 --name devops-demo-develop devops-demo
 		
 		
                 """
