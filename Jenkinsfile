@@ -41,7 +41,7 @@ pipeline {
                 """
             }
         }
-	stage('Feature Build&Deploy') {
+	stage('Feature CI') {
             when{
 		branch 'feature'
 	    }
@@ -51,9 +51,7 @@ pipeline {
 
                 cd /usr/src/multibranch-pipeline-feature
 		git pull	
-		dotnet restore
-		dotnet publish -c Release
-		dotnet --version 
+		
 
                 """
 
@@ -67,7 +65,7 @@ pipeline {
                 }
             }
         }
-	stage('Master Build&Deploy') {
+	stage('Master CI') {
             when{
 		branch 'master'
 	    }
@@ -77,9 +75,7 @@ pipeline {
 
                 cd /usr/src/multibranch-pipeline
 		git pull		
-		dotnet restore
-		dotnet publish -c Release
-		dotnet --version
+		
 
                 """
 
@@ -93,20 +89,19 @@ pipeline {
             }
 
         }
-        stage('Develop Build&Deploy') {
+        stage('Develop CI/CD) {
             when {
                 branch 'develop'
             }
             steps {
                 sh """
-                echo "Building Artifact"
+                echo "Building Artifact  "
 
                 cd /usr/src/multibranch-pipeline-develop
 		git pull
-		dotnet restore 
-
-		dotnet publish -c Release
-		dotnet --version
+		docker build -t devops-demo-develop .
+		docker run -it --rm -p 5001:80 --name devops-demo-develop devops-demo
+		
 		
                 """
             }
