@@ -53,7 +53,7 @@ pipeline {
 		git pull	
 		dotnet restore
 		dotnet publish -c Release
-		dotnet --version
+		dotnet --version 
 
                 """
 
