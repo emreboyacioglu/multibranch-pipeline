@@ -4,7 +4,6 @@ WORKDIR /app
 # Copy csproj and restore
 COPY ./devops-demo/*.csproj ./
 RUN dotnet restore
-RUN dotnet build  -c Release
 
 # Copy everything else and build
 COPY . ./
