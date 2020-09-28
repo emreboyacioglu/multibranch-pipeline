@@ -24,11 +24,13 @@ pipeline {
             }
         }
 
-        stage('Checkout') {
+        stage('Code Checkout') {
             steps {
-                sh """
-                echo "Running Unit Tests"
-                """
+                checkout([
+                    $class: 'GitSCM', 
+                    branches: [[name: '*/master']], 
+                    userRemoteConfigs: [[url: 'https://github.com/emreboyacioglu/multibranch-pipeline.git']]
+                ])
             }
         }
 
@@ -45,12 +47,9 @@ pipeline {
 	    }
 	    steps {
                 sh """
-                echo "Building Artifact"
+                echo "Building Artifact!"
 
                 cd /usr/src/multibranch-pipeline-feature
-
-		git pull
-
 		dotnet restore
 		dotnet publish
 		dotnet --version
@@ -75,8 +74,7 @@ pipeline {
                 sh """
                 echo "Building Artifact"
 
-                cd /usr/src/multibranch-pipeline
-		git pull
+                cd /usr/src/multibranch-pipeline	
 		dotnet restore
 		dotnet publish
 		dotnet --version
@@ -101,8 +99,7 @@ pipeline {
                 sh """
                 echo "Building Artifact"
 
-                cd /usr/src/multibranch-pipeline-develop
-		git pull		
+                cd /usr/src/multibranch-pipeline-develop	
 		dotnet restore
 		dotnet publish
 		dotnet --version
