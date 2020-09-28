@@ -96,7 +96,7 @@ pipeline {
             steps {
                 sh """
                 echo "Building Artifact "
-
+ 
                 cd /usr/src/multibranch-pipeline-develop 
 		git fetch --all
 		git reset --hard origin/develop
