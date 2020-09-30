@@ -27,9 +27,6 @@ pipeline {
             }
         }
         stage('Code Checkout') {
-            when{
-                branch 'develop'
-            }
             steps {
 
                 sh """
