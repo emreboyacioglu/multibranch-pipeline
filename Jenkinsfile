@@ -36,11 +36,13 @@ pipeline {
             }
         }
         stage('Build CI Artifacts') {
+            steps {
                 sh """
                 dotnet restore
                 dotnet clean
                 dotnet build --configuration Release
                 """
+            }
         }
         stage('Test') {
             steps {
