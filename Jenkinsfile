@@ -46,15 +46,6 @@ pipeline {
                 dotnet clean
                 dotnet build --configuration Release
                 """
-            }post{
-                success {
-                    sh """ 
-                    echo "Develop Build & Deploy tamamlandı."					
-                    """
-                }
-                failure {
-                    echo "THERE IS A PROBLEM IN BUILD!"
-                }
             }
         }
         stage('Test') {
@@ -64,8 +55,6 @@ pipeline {
                 """
             }
         }
-        
-            
-        }
-    }   
+    }
+}   
 
