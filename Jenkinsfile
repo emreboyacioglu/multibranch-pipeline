@@ -1,5 +1,4 @@
 pipeline {
-
     agent {
         node {
             label 'master'
@@ -14,7 +13,6 @@ pipeline {
     }
 
     stages {
-        
         stage('Cleanup Workspace') {
             steps {
                 cleanWs()
@@ -26,92 +24,41 @@ pipeline {
 
         stage('Code Checkout') {
             steps {
-                checkout([
-                    $class: 'GitSCM', 
-                    branches: [[name: '*/master']], 
-                    userRemoteConfigs: [[url: 'https://github.com/emreboyacioglu/multibranch-pipeline.git']]
-                ])
+                sh """
+                git gc
+                git reset --hard
+                git pull
+                """
             }
         }
 
-        stage('Code Analysis') {
+        stage('Build CI') {
             steps {
                 sh """
-                echo "Running Code Analysis"
+                dotnet restore
+                dotnet clean
+                dotnet build --configuration Release
                 """
-            }
-        }
-	stage('Feature CI') {
-            when{
-		branch 'feature'
-	    }
-	    steps {
-                sh """
-                echo "Building Artifact!"
-
-                cd /usr/src/multibranch-pipeline-feature
-		git pull	
-		
-
-                """
-
-
-            }
-	    post{
+            }post{
                 success {
-                     sh """ 
-			echo "Feature Build & Deploy tamamlandı."
-			"""
+                    sh """ 
+                    echo "Develop Build & Deploy tamamlandı."					
+                    """
+                }
+                failure {
+                    echo "THERE IS A PROBLEM IN BUILD!"
                 }
             }
         }
-	stage('Master CI') {
-            when{
-		branch 'master'
-	    }
-	    steps {
-                sh """
-                echo "Building Artifact"
-
-                cd /usr/src/multibranch-pipeline
-		git pull		
-		
-
-                """
-
-            }
-	    post{
-                success {
-                     sh """ 
-			echo "Master Build & Deploy tamamlandı."
-			"""
-                }
-            }
-
-        }
-        stage('Develop CI/CD') {
-            when {
-                branch 'develop'
-            }
+        stage('Test) {
             steps {
                 sh """
-                echo "Building Artifact "
- 
-                cd /usr/src/multibranch-pipeline-develop 
-		git fetch --all
-		git reset --hard origin/develop
-		git pull origin develop
-		docker build --no-cache -t devops-demo-develop .
-		
+                dotnet test
                 """
             }
-	    post{
-                success {
-                     sh """ 
-			echo "Develop Build & Deploy tamamlandı."					"""
-                }
-            }
         }
-
+        
+            
+        }
     }   
 }
