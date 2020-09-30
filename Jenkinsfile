@@ -28,7 +28,6 @@ pipeline {
         }
         stage('Code Checkout') {
             steps {
-
                 sh """
                 git gc
                 git reset --hard
@@ -36,14 +35,12 @@ pipeline {
                 """
             }
         }
-        stage('Build CI Feature') {
-            steps {
+        stage('Build CI Artifacts') {
                 sh """
                 dotnet restore
                 dotnet clean
                 dotnet build --configuration Release
                 """
-            }
         }
         stage('Test') {
             steps {
