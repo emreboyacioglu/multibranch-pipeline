@@ -23,15 +23,15 @@ pipeline {
         }
         stage('Git SCM') {
             steps {
-                checkout([
-                    $class: 'GitSCM', 
-                    branches: [[name: '*/master']], 
-                    userRemoteConfigs: [[url: 'https://github.com/emreboyacioglu/multibranch-pipeline.git']]
-                ])
+                checkout scm
             }
         }
         stage('Code Checkout') {
+            when{
+                branch 'develop'
+            }
             steps {
+
                 sh """
                 git gc
                 git reset --hard
@@ -39,7 +39,7 @@ pipeline {
                 """
             }
         }
-        stage('Build CI') {
+        stage('Build CI Feature') {
             steps {
                 sh """
                 dotnet restore
