@@ -21,7 +21,15 @@ pipeline {
                 """
             }
         }
-
+        stage('Git SCM') {
+            steps {
+                checkout([
+                    $class: 'GitSCM', 
+                    branches: [[name: '*/master']], 
+                    userRemoteConfigs: [[url: 'https://github.com/emreboyacioglu/multibranch-pipeline.git']]
+                ])
+            }
+        }
         stage('Code Checkout') {
             steps {
                 sh """
