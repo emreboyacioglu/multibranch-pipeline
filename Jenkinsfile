@@ -40,7 +40,7 @@ pipeline {
                 sh """
                 dotnet restore
                 dotnet clean
-                dotnet build --configuration Release
+                dotnet build --configuration Release 
                 """
             }
         }
