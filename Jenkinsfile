@@ -58,7 +58,7 @@ pipeline {
                 }
             }
         }
-        stage('Test) {
+        stage('Test') {
             steps {
                 sh """
                 dotnet test
