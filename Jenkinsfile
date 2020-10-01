@@ -26,6 +26,15 @@ pipeline {
                 checkout scm
             }
         }
+        stage('Build CI Artifacts') {
+            steps {
+                sh """
+                dotnet restore
+                dotnet clean
+                dotnet build --configuration Release 
+                """
+            }
+        }
         stage('Code Checkout Feature') {
            when{
                branch 'feature'
@@ -40,15 +49,6 @@ pipeline {
                     """
                 }
             
-        }
-        stage('Build CI Artifacts') {
-            steps {
-                sh """
-                dotnet restore
-                dotnet clean
-                dotnet build --configuration Release 
-                """
-            }
         }
         stage('Code Checkout Develop'){
             when{
