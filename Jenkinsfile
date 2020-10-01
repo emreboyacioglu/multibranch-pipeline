@@ -34,7 +34,6 @@ pipeline {
                     sh """ 
                     git checkout feature
                     git status
-                    git fetch --all
                     git pull
                     """
                 }
