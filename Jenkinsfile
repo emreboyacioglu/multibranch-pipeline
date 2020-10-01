@@ -26,6 +26,22 @@ pipeline {
                 checkout scm
             }
         }
+        stage('Build CI Artifacts') {
+            steps {
+                sh """
+                dotnet restore
+                dotnet clean
+                dotnet build --configuration Release 
+                """
+            }
+        }
+        stage('Unit Testing') {
+            steps {
+                sh """
+                dotnet test --logger:"trx;logFileName=report.xml" 
+                """
+            }
+        }
         stage('Code Checkout Feature') {
            when{
                branch 'feature'
@@ -41,6 +57,7 @@ pipeline {
                 }
             
         }
+        
         stage('Code Checkout Develop'){
             when{
                 branch 'develop'
@@ -55,22 +72,7 @@ pipeline {
                     """
                 }
         }
-        stage('Build CI Artifacts') {
-            steps {
-                sh """
-                dotnet restore
-                dotnet clean
-                dotnet build --configuration Release 
-                """
-            }
-        }
-        stage('Test') {
-            steps {
-                sh """
-                dotnet test
-                """
-            }
-        }
+        
     }
 }   
 
