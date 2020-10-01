@@ -26,14 +26,34 @@ pipeline {
                 checkout scm
             }
         }
-        stage('Code Checkout') {
-            steps {
-                sh """ 
-                git gc
-                git reset --hard
-                git pull
-                """
+        stage('Code Checkout Feature') {
+           when{
+               branch 'feature'
+           }
+                steps {
+                    sh """ 
+                    cd /usr/src/multibranch-pipeline-feature                    
+                    git stash
+                    git stash clear
+                    git status
+                    git pull
+                    """
+                }
+            
+        }
+        stage('Code Checkout Develop'){
+            when{
+                branch 'develop'
             }
+             steps {
+                    sh """ 
+                    cd /usr/src/multibranch-pipeline-develop
+                    git stash
+                    git stash clear
+                    git status
+                    git pull
+                    """
+                }
         }
         stage('Build CI Artifacts') {
             steps {
