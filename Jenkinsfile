@@ -21,6 +21,11 @@ pipeline {
                 """
             }
         }
+        stage('Git SCM') {
+            steps {
+                checkout scm
+            }
+        }
         stage('Code Checkout Feature') {
            when{
                branch 'feature'
