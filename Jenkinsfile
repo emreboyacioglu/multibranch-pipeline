@@ -32,10 +32,10 @@ pipeline {
            }
                 steps {
                     sh """ 
+                    cd /usr/src/multibranch-pipeline-feature
                     git checkout feature
                     git status
-                    git fetch --all  
-                    git reset --hard origin/feature
+                    git pull
                     """
                 }
             
@@ -46,7 +46,7 @@ pipeline {
             }
              steps {
                     sh """ 
-                    git checkout develop
+                    git checkout  develop
                     git status
                     git fetch --all  
                     git reset --hard origin/develop
