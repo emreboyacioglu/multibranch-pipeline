@@ -35,6 +35,13 @@ pipeline {
                 """
             }
         }
+        stage('Unit Testing') {
+            steps {
+                sh """
+                dotnet test --logger:"trx;logFileName=report.xml" 
+                """
+            }
+        }
         stage('Code Checkout Feature') {
            when{
                branch 'feature'
@@ -50,6 +57,7 @@ pipeline {
                 }
             
         }
+        
         stage('Code Checkout Develop'){
             when{
                 branch 'develop'
@@ -64,13 +72,7 @@ pipeline {
                     """
                 }
         }
-        stage('Test') {
-            steps {
-                sh """
-                dotnet test --logger:"trx;logFileName=report.xml" 
-                """
-            }
-        }
+        
     }
 }   
 
