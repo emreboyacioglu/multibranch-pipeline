@@ -13,7 +13,7 @@ namespace devops_demo.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)opjoıjoojoı
+        public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
         }
