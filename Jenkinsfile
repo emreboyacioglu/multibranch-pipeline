@@ -27,14 +27,27 @@ pipeline {
             }
         }
         stage('Code Checkout') {
-            steps {
-                sh """ 
-                git checkout feature
-                git status
-                git fetch --all  
-                git reset --hard
-                git pull
-                """
+            if(env.BRANCH_NAME == 'feature')
+            {
+                steps {
+                    sh """ 
+                    git checkout feature
+                    git status
+                    git fetch --all  
+                    git reset --hard origin/feature
+                    """
+                }
+            }
+            else if(env.BRANCH_NAME == 'develop')
+            {
+                steps {
+                    sh """ 
+                    git checkout develop
+                    git status
+                    git fetch --all  
+                    git reset --hard origin/develop
+                    """
+                }
             }
         }
         stage('Build CI Artifacts') {
