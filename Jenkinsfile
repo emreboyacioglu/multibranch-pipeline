@@ -67,7 +67,7 @@ pipeline {
         stage('Test') {
             steps {
                 sh """
-                dotnet test
+                dotnet test --logger:"trx;logFileName=report.xml" 
                 """
             }
         }
