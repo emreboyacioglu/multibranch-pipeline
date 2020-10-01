@@ -32,7 +32,9 @@ pipeline {
            }
                 steps {
                     sh """ 
-                    cd /usr/src/multibranch-pipeline-feature
+                    cd /usr/src/multibranch-pipeline-feature                    
+                    git stash
+                    git stash clear
                     git status
                     git pull
                     """
@@ -46,7 +48,8 @@ pipeline {
              steps {
                     sh """ 
                     cd /usr/src/multibranch-pipeline-develop
-                    git fetch --all
+                    git stash
+                    git stash clear
                     git status
                     git pull
                     """
