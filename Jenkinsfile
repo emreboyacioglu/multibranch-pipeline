@@ -29,9 +29,9 @@ pipeline {
         stage('Code Checkout') {
             steps {
                 sh """ 
-                git branch
+                git checkout feature
                 git status
-                git fetch --all
+                git fetch --all  
                 git reset --hard
                 git pull
                 """
