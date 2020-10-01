@@ -26,14 +26,32 @@ pipeline {
                 checkout scm
             }
         }
-        stage('Code Checkout') {
-            steps {
-                sh """ 
-                git gc
-                git reset --hard
-                git pull
-                """
+        stage('Code Checkout Feature') {
+           when{
+               branch 'feature'
+           }
+                steps {
+                    sh """ 
+                    git checkout feature
+                    git status
+                    git fetch --all  
+                    git reset --hard origin/feature
+                    """
+                }
+            
+        }
+        stage('Code Checkout Develop'){
+            when{
+                branch 'develop'
             }
+             steps {
+                    sh """ 
+                    git checkout develop
+                    git status
+                    git fetch --all  
+                    git reset --hard origin/develop
+                    """
+                }
         }
         stage('Build CI Artifacts') {
             steps {
