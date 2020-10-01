@@ -33,7 +33,6 @@ pipeline {
                 steps {
                     sh """ 
                     git checkout feature
-                    git reset --hard origin/feature
                     git status
                     git fetch --all
                     git pull
