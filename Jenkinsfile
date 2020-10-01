@@ -26,9 +26,10 @@ pipeline {
                 checkout scm
             }
         }
-        stage('Code Checkout') {
-            if(env.BRANCH_NAME == 'feature')
-            {
+        stage('Code Checkout Feature') {
+           when{
+               branch 'feature'
+           }
                 steps {
                     sh """ 
                     git checkout feature
@@ -37,10 +38,13 @@ pipeline {
                     git reset --hard origin/feature
                     """
                 }
+            
+        }
+        stage('Code Checkout Develop'){
+            when{
+                branch 'develop'
             }
-            else if(env.BRANCH_NAME == 'develop')
-            {
-                steps {
+             steps {
                     sh """ 
                     git checkout develop
                     git status
@@ -48,7 +52,6 @@ pipeline {
                     git reset --hard origin/develop
                     """
                 }
-            }
         }
         stage('Build CI Artifacts') {
             steps {
