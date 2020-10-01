@@ -27,6 +27,7 @@ pipeline {
            }
                 steps {
                     sh """ 
+                    cd /usr/src/multibranch-pipeline-feature
                     git checkout feature
                     git status
                     git pull
