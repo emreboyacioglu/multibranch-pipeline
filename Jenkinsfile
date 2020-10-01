@@ -47,7 +47,7 @@ pipeline {
                branch 'feature'
            }
                 steps {
-                    sh """  
+                    sh """   
                     cd /usr/src/multibranch-pipeline-feature                    
                     git stash
                     git stash clear
