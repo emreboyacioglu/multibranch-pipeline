@@ -29,6 +29,8 @@ pipeline {
         stage('Code Checkout') {
             steps {
                 sh """ 
+                git status
+                git pull
                 git gc
                 git reset --hard
                 git pull
