@@ -32,8 +32,9 @@ pipeline {
            }
                 steps {
                     sh """ 
-                    cd /usr/src/multibranch-pipeline-feature
-                    git checkout feature
+                    cd /usr/src/multibranch-pipeline-feature                    
+                    git stash
+                    git stash clear
                     git status
                     git pull
                     """
@@ -47,7 +48,8 @@ pipeline {
              steps {
                     sh """ 
                     cd /usr/src/multibranch-pipeline-develop
-                    git checkout develop
+                    git stash
+                    git stash clear
                     git status
                     git pull
                     """
