@@ -46,10 +46,10 @@ pipeline {
             }
              steps {
                     sh """ 
-                    git checkout  develop
+                    cd /usr/src/multibranch-pipeline-develop
+                    git checkout develop
                     git status
-                    git fetch --all  
-                    git reset --hard origin/develop
+                    git pull
                     """
                 }
         }
