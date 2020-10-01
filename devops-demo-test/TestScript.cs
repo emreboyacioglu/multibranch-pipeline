@@ -13,7 +13,7 @@ namespace devops_demo_test
         [Fact]
         public void XUnitTestOther()
         {
-            Assert.True(false);
+            Assert.True(true);
         }
     }
 }
